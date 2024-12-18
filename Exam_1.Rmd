@@ -1,0 +1,39 @@
+---
+title: "Exam_1"
+author: "Sidibé Doriane"
+date: "2024-12-18"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(tidyverse)
+```
+
+##Fonction qui lit les 60 fichiers
+
+```{r}
+Lecture_fichier <- list.files(path = "C:/Users/sidib/OneDrive/Documents/Fichier_exam/", pattern = ".csv", full.names = TRUE) %>%
+  lapply(read.csv) %>%
+  bind_rows                                
+Lecture_fichier
+
+```
+
+
+##Visualisons les données avec ggplot2
+##Ce graphique montre l'evolution des ventes en fonction des dates
+```{r}
+Lecture_fichier %>% 
+  mutate(date=as.factor(date))
+  ggplot(Lecture_fichier,aes(x=date ,y= nb_de_ventes)) +
+    geom_line(linewidth=1,group=1)
+  labs(
+    x="Date",
+    y="Nombre de ventes",
+    title="Visualisation des ventes")
+```
+
+#Pas d'utilisation de chatgpt
+
+https://github.com/dosidibe/Examen_prog_stat
